@@ -47,9 +47,9 @@ reward_type: 1
 # 打赏wording
 reward_wording: '谢谢你请我吃糖果'
 # 支付宝二维码图片地址，跟你设置头像的方式一样。比如：/assets/img/alipay.jpg
-alipay: /photos/alipay.jpg
+alipay: /image/alipay.jpg
 # 微信二维码图片地址
-weixin: /photos/weixin.jpg
+weixin: /image/weixin.jpg
 
 # 目录
 # 目录设定：0-不显示目录； 1-文章对应的md文件里有toc:true属性，才有目录； 2-所有文章均显示目录
@@ -65,10 +65,10 @@ top: true
 # Miscellaneous
 baidu_analytics: ''
 google_analytics: false
-favicon: /photos/1.png
+favicon: /image/1.png
 
 #你的头像url
-avatar: /photos/1.png
+avatar: /image/1.png
 
 #是否开启分享
 share_jia: true
@@ -127,4 +127,4 @@ friends:
   友情链接5: http://localhost:4000/
   友情链接6: http://localhost:4000/
 
-aboutme: <br>鲜衣怒马少年时<br>一日看遍长安花
+aboutme: 鲜衣怒马少年时<br>一日看遍长安花
