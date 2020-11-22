@@ -6,15 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>Archives: 2020 | Coder&amp;&amp;Gamer</title>
+  <title>Coder&amp;&amp;Gamer</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="湘潭大学18级软件工程1班">
-<meta property="og:type" content="website">
+  <meta name="description" content="算法设计与分析过程与算法是解决问题的一种方法的逐步描述。  由若干条指令组成的又穷序列。 每条指令的意义是确定的。 具有零个或多个输入。 产生若干个输出。 执行时间是有限的。  算法的复杂性取决于：  求解问题的规模 具体的输入数据 算法本身的设计  算法：确定性、有穷性、可行性、0个或多个输入、1个或多个输出。 递归将相对较大规模的对象操作归结为较小规模的对象实施同样的操作。体现在递归元上。 递">
+<meta property="og:type" content="article">
 <meta property="og:title" content="Coder&amp;&amp;Gamer">
-<meta property="og:url" content="http://example.com/archives/2020/index.html">
+<meta property="og:url" content="http://example.com/2020/11/22/%E7%AE%97%E6%B3%95%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%88%86%E6%9E%90/index.html">
 <meta property="og:site_name" content="Coder&amp;&amp;Gamer">
-<meta property="og:description" content="湘潭大学18级软件工程1班">
+<meta property="og:description" content="算法设计与分析过程与算法是解决问题的一种方法的逐步描述。  由若干条指令组成的又穷序列。 每条指令的意义是确定的。 具有零个或多个输入。 产生若干个输出。 执行时间是有限的。  算法的复杂性取决于：  求解问题的规模 具体的输入数据 算法本身的设计  算法：确定性、有穷性、可行性、0个或多个输入、1个或多个输出。 递归将相对较大规模的对象操作归结为较小规模的对象实施同样的操作。体现在递归元上。 递">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-11-22T07:01:06.846Z">
+<meta property="article:modified_time" content="2020-11-22T07:01:06.846Z">
 <meta property="article:author" content="JingBo Guan">
 <meta property="article:tag" content="编程,代码,开源">
 <meta name="twitter:card" content="summary">
@@ -153,275 +155,247 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-算法设计与分析" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="算法设计与分析"><a href="#算法设计与分析" class="headerlink" title="算法设计与分析"></a>算法设计与分析</h1><p>过程与算法是解决问题的一种方法的逐步描述。</p>
+<ol>
+<li>由若干条指令组成的又穷序列。</li>
+<li>每条指令的意义是确定的。</li>
+<li>具有零个或多个输入。</li>
+<li>产生若干个输出。</li>
+<li>执行时间是有限的。</li>
+</ol>
+<p>算法的复杂性取决于：</p>
+<ol>
+<li>求解问题的规模</li>
+<li>具体的输入数据</li>
+<li>算法本身的设计</li>
+</ol>
+<p>算法：确定性、有穷性、可行性、0个或多个输入、1个或多个输出。</p>
+<h3 id="递归"><a href="#递归" class="headerlink" title="递归"></a>递归</h3><p>将相对较大规模的对象操作归结为较小规模的对象实施同样的操作。体现在递归元上。</p>
+<p>递归元的变化应能导致算法的终止。</p>
+<p>汉诺塔问题：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Hanoi</span><span class="params">(<span class="keyword">int</span> n,<span class="keyword">int</span> Fr,<span class="keyword">int</span> To,<span class="keyword">int</span> As)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(n&gt;<span class="number">0</span>)&#123;</span><br><span class="line">        Hanoi(n-<span class="number">1</span>,Fro,Ass,To); <span class="comment">//将A上面的n-1个盘移至C</span></span><br><span class="line">        Move(Fro,To);</span><br><span class="line">        Hanoi(n-<span class="number">1</span>,Ass,To,Fro);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>常见的递归形式:</p>
+<ol>
+<li>多变元递归</li>
+<li>多步递归</li>
+<li>嵌套递归</li>
+<li>联立递归（同时定义几个函数，它们彼此相互调用)</li>
+</ol>
+<p>Hilbert图案:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">A</span><span class="params">(i)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(i&gt;<span class="number">0</span>)&#123;</span><br><span class="line">        D(i-<span class="number">1</span>);x=x-h;plotint(x,y);</span><br><span class="line">        A(i-<span class="number">1</span>);y=y-h;ploting(x,y);</span><br><span class="line">        A(i-<span class="number">1</span>);x=x+h;ploting(x,y);</span><br><span class="line">        B(i-<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="动态规划"><a href="#动态规划" class="headerlink" title="动态规划"></a>动态规划</h3><ul>
+<li>基本要素<ul>
+<li>最优子问题</li>
+<li>重叠子问题</li>
+</ul>
+</li>
+</ul>
+<p>一个问题可用动态规划算法或者贪心算法求解的关键特征是问题的(最优子结构性质)。</p>
+<p>按以下几个步骤进行：</p>
+<ol>
+<li>找出最优解的性质，并刻画其结构特征；</li>
+<li>递归地定义最优值；</li>
+<li>以自底向上的方式计算出各子结构的最优值并添入表格保存。</li>
+<li>根据计算最优值得到的信息，构造最优解。</li>
+</ol>
+<p>动态规划一般分为线性动规，区域动规，树形动规，背包动规。</p>
+<h3 id="贪心算法"><a href="#贪心算法" class="headerlink" title="贪心算法"></a>贪心算法</h3><p>所作出的选择只是局部最优的。</p>
+<p>{</p>
+<p>初始化；</p>
+<p>重复执行以下操作；</p>
+<p>选择当前可以选择的最优解；</p>
+<p>将所选择的当前解加入到问题的解；</p>
+<p>直至满足问题求解的结束条件。</p>
+<p>}</p>
+<p>要证明一个整体最优解必定包含了第一个贪心选择。</p>
+<p><strong>Prim算法做法</strong></p>
+<p>保证连通的前提下依次选出权重较小的n-1条边。</p>
+<p><strong>Kruskal算法的做法</strong></p>
+<p>无回路的前提下一次选择权重较小的n-1条边。</p>
+<h3 id="回溯"><a href="#回溯" class="headerlink" title="回溯"></a>回溯</h3><p><strong>n皇后</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">Try(s)&#123;</span><br><span class="line">    j=<span class="number">0</span>;q=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(!q&amp;&amp;j&lt;n)&#123;</span><br><span class="line">        j++;</span><br><span class="line">        <span class="keyword">if</span>(Safe(s,j))&#123;</span><br><span class="line">            Record(s,j);</span><br><span class="line">            <span class="keyword">if</span>(s==n)&#123;q==<span class="number">1</span>;output();&#125;</span><br><span class="line">            <span class="keyword">else</span> Try(s+<span class="number">1</span>);</span><br><span class="line">            <span class="keyword">if</span>(!q) Move-Off(s,j);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> q;</span><br><span class="line">&#125;</span><br><span class="line">Record(s,j)&#123;k=s-j+n-<span class="number">1</span>;</span><br><span class="line">B[s]=j;C[j]=<span class="number">0</span>;D[s+j-<span class="number">1</span>]=<span class="number">0</span>;U[k]=<span class="number">0</span>;&#125;</span><br><span class="line"></span><br><span class="line">Move-Off(s,j)&#123;</span><br><span class="line">    k=s-j+n-<span class="number">1</span>;</span><br><span class="line">    B[s]=<span class="number">0</span>;C[j]=<span class="number">1</span>;D[s+j-<span class="number">1</span>]=<span class="number">1</span>;U[k]=<span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line">Safe(s,j)&#123;</span><br><span class="line">    k=s-j+n-<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">if</span>(c[j]&amp;&amp;U[k]&amp;&amp;D[s+j-<span class="number">1</span>])<span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>TSP问题</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Try(s)&#123;</span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">2</span>;i&lt;=n;i++)</span><br><span class="line">        <span class="keyword">if</span>(C&gt;NC+C[N[s][i]]&amp;&amp;T[i])&#123;</span><br><span class="line">            Record(s,i);</span><br><span class="line">            <span class="keyword">if</span>(s==n)</span><br><span class="line">                <span class="keyword">if</span>(C&gt;NC+C[N[s][l]]) TakeNewPath();</span><br><span class="line">            <span class="keyword">else</span> Try(s+<span class="number">1</span>);</span><br><span class="line">            Move-of(s,i);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h3 id="分支限界法"><a href="#分支限界法" class="headerlink" title="分支限界法"></a>分支限界法</h3><p>分支限界法常以广度优先或以最小耗费（最大效益）优先的方式搜索问题的解空间树。</p>
+<ul>
+<li>常用的两种方法<ul>
+<li>优先队列法(最小耗费优先)</li>
+<li>FIFO(队列式)分支限界法(广度优先)</li>
+</ul>
+</li>
+</ul>
+<h3 id="概率计算"><a href="#概率计算" class="headerlink" title="概率计算"></a>概率计算</h3><p>基本特征是计算具有不确定性。解也不一定是最优解。</p>
+<p>一个问题可以采用随机选择计算的步骤。</p>
+<p>基本特征是计算具有不确定性。</p>
+<p>解不一定是最优解。</p>
+<p>计算</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">Darts</span><span class="params">(<span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">    <span class="keyword">double</span> x,y;</span><br><span class="line">    <span class="keyword">int</span> k=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">static</span> RandomNumber dart;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">        x=dart.fRandom();</span><br><span class="line">        y=dart.fRandom();</span><br><span class="line">        <span class="keyword">if</span>(y&lt;=f(x)) k++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> k/<span class="keyword">double</span>(n);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>模拟洗牌</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Shuffle</span><span class="params">(Type a[],<span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">    <span class="keyword">static</span> RandomNumber md;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;n;i++)&#123;</span><br><span class="line">        <span class="keyword">int</span> j = md.Random(n-i+<span class="number">1</span>)+i;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>模拟退火算法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">k=<span class="number">0</span>;</span><br><span class="line">i=i0;</span><br><span class="line">t=t0;</span><br><span class="line"><span class="keyword">while</span>(不满足停止准则)&#123;</span><br><span class="line">    Gen(Si);</span><br><span class="line">    foreach(j Si)</span><br><span class="line">        <span class="keyword">if</span>(f(i)&lt;f(j)) i=j;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(exp(f(i) - f(j))/t)&gt;random(<span class="number">0</span>,<span class="number">1</span>)) i=j;</span><br><span class="line">    k=k+<span class="number">1</span>;</span><br><span class="line">    t=tk;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>1975年霍兰提出了遗传算法：产生所谓的个体种群，经过复制、交叉和变异产生下一代种群。（交叉、变异、度量、选择）</p>
+<p>(1)下列算法不是随机算法思想的是：（A）</p>
+<ul>
+<li><p>A.</p>
+<p>普里姆算法</p>
+</li>
+<li><p>B.</p>
+<p>舍伍德算法</p>
+</li>
+<li><p>C.</p>
+<p>蒙特卡洛算法</p>
+</li>
+<li><p>D.</p>
+<p>拉斯维加斯算法</p>
+</li>
+</ul>
+<p>(2)模拟退火算法来源于固体退火原理。</p>
+<p>(3)人工神经网络算法是一种模拟人类大脑神经网络结构的算法。</p>
+<h3 id="NP完全问题"><a href="#NP完全问题" class="headerlink" title="NP完全问题"></a>NP完全问题</h3><p>(1)k带图灵机的空间复杂性S(n)是指（A）</p>
+<ul>
+<li><p>A.</p>
+<p>k带图灵机处理所有长度为n的输入时，在k条带上所使用过的方格数的总和。</p>
+</li>
+</ul>
+<p>(2)下面关于NP问题说法正确的是  P类问题包含在NP类问题中</p>
+<p>(3)所有非确定性多项式时间内可解的判定问题构成NP类问题 对</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/11/22/%E6%A0%91/" class="archive-article-date">
-  	<time datetime="2020-11-22T14:57:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-22</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/11/22/%E6%A0%91/">树</a>
-    </h1>
-  
+      
 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2020/11/22/%E7%AE%97%E6%B3%95%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%88%86%E6%9E%90/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/11/22/JAVA%E5%8E%86%E5%8F%B2/" class="archive-article-date">
-  	<time datetime="2020-11-22T07:01:06.846Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-22</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/11/22/JAVA%E9%94%81/" class="archive-article-date">
-  	<time datetime="2020-11-22T07:01:06.846Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-22</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
+<nav id="article-nav">
+  
+    <a href="/2020/11/22/%E6%8E%92%E5%BA%8F/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/11/21/%E4%B8%80%E9%81%93%E9%A2%98/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">一道题</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/11/22/Java%E5%86%85%E5%AD%98%E5%8C%BA%E5%9F%9F/" class="archive-article-date">
-  	<time datetime="2020-11-22T07:01:06.846Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-22</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/11/22/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E5%AE%9E%E6%88%98/" class="archive-article-date">
-  	<time datetime="2020-11-22T07:01:06.846Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-22</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
+        
+        
+    </div>
+</aside>
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/11/22/%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8%E4%B8%8E%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D%E7%AD%96%E7%95%A5/" class="archive-article-date">
-  	<time datetime="2020-11-22T07:01:06.846Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-22</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/11/22/%E6%8E%92%E5%BA%8F/" class="archive-article-date">
-  	<time datetime="2020-11-22T07:01:06.846Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-22</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/11/22/%E7%AE%97%E6%B3%95%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%88%86%E6%9E%90/" class="archive-article-date">
-  	<time datetime="2020-11-22T07:01:06.846Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-22</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/11/21/%E4%B8%80%E9%81%93%E9%A2%98/" class="archive-article-date">
-  	<time datetime="2020-11-21T17:29:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-21</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/11/21/%E4%B8%80%E9%81%93%E9%A2%98/">一道题</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/11/19/%E6%AF%81%E7%81%AD%E6%88%98%E5%A3%AB%E6%B0%B8%E6%81%92/" class="archive-article-date">
-  	<time datetime="2020-11-19T19:25:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-19</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/11/19/%E6%AF%81%E7%81%AD%E6%88%98%E5%A3%AB%E6%B0%B8%E6%81%92/">毁灭战士永恒——看似纯粹，实则复杂</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Game</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/archives/2020/page/2/">2</a><a class="extend next" rel="next" href="/archives/2020/page/2/">Next &amp;raquo;</a>
-    </nav>
   
 
 
@@ -445,8 +419,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

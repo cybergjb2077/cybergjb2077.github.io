@@ -155,6 +155,677 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-树" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/11/22/%E6%A0%91/">树</a>
+    </h1>
+  
+
+        
+        <a href="/2020/11/22/%E6%A0%91/" class="archive-article-date">
+  	<time datetime="2020-11-22T14:57:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-22</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="树"><a href="#树" class="headerlink" title="树"></a>树</h1><h3 id="1-树的实现"><a href="#1-树的实现" class="headerlink" title="1 树的实现"></a>1 树的实现</h3><p>作用，可以用来作为操作系统的目录结构，好像html和xml也是这么用的。</p>
+<h3 id="2-二叉树"><a href="#2-二叉树" class="headerlink" title="2 二叉树"></a>2 二叉树</h3><p>可以用来作为表达式树。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BinaryNode</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    Object element;</span><br><span class="line">    BinaryNode left;</span><br><span class="line">    BinaryNode right;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-二叉查找树"><a href="#3-二叉查找树" class="headerlink" title="3 二叉查找树"></a>3 二叉查找树</h3><p>基本方法有contains、findMin、findMax、insert、remove方法，具体实现看树P81-P83</p>
+<h3 id="AVL树"><a href="#AVL树" class="headerlink" title="AVL树"></a>AVL树</h3><p>带有平衡的二叉树：左子树和右子树高度差最多为1.</p>
+<p>旋转，什么时候单旋转，什么时候双旋转可以根据以下规则判断。</p>
+<ul>
+<li>首先找到第一个破坏规则的点</li>
+<li>然后找到路径上第二个点</li>
+<li>然后根据插入的点是否在两点之间的范围内，在就是双旋转</li>
+</ul>
+<h3 id="4-伸展树"><a href="#4-伸展树" class="headerlink" title="4 伸展树"></a>4 伸展树</h3><p>展开：分为之字形展开和一字形展开。</p>
+<h3 id="5-B树"><a href="#5-B树" class="headerlink" title="5 B树"></a>5 B树</h3><p>用于系统的索引。</p>
+<h3 id="字典树"><a href="#字典树" class="headerlink" title="字典树"></a>字典树</h3><p>今天看到了有关字典树的知识。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">insert</span><span class="params">(String s, <span class="keyword">int</span> id)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> len = s.length(), add = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len; i++) &#123;</span><br><span class="line">            <span class="keyword">int</span> x = s.charAt(i) - <span class="string">&#x27;a&#x27;</span>;</span><br><span class="line">            <span class="keyword">if</span> (tree.get(add).ch[x] == <span class="number">0</span>) &#123;</span><br><span class="line">                tree.add(<span class="keyword">new</span> Node());</span><br><span class="line">                tree.get(add).ch[x] = tree.size() - <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            add = tree.get(add).ch[x];</span><br><span class="line">        &#125;</span><br><span class="line">        tree.get(add).flag = id;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">findWord</span><span class="params">(String s, <span class="keyword">int</span> left, <span class="keyword">int</span> right)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> add = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = right; i &gt;= left; i--) &#123;</span><br><span class="line">            <span class="keyword">int</span> x = s.charAt(i) - <span class="string">&#x27;a&#x27;</span>;</span><br><span class="line">            <span class="keyword">if</span> (tree.get(add).ch[x] == <span class="number">0</span>) &#123;</span><br><span class="line">                <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            add = tree.get(add).ch[x];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> tree.get(add).flag;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/palindrome-pairs/">leetcode回文对</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/11/22/%E6%A0%91/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-JAVA历史" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="JAVA发展史"><a href="#JAVA发展史" class="headerlink" title="JAVA发展史"></a>JAVA发展史</h1><p>从Java的第一个版本诞生到现在已有二十余年的时间。</p>
+<h3 id="初出茅庐"><a href="#初出茅庐" class="headerlink" title="初出茅庐"></a>初出茅庐</h3><p>1991年4月，由James Gosling博士领导开发的Oak语言就是Java语言的前身，当时Oak语言并不算成功，之后迅速找到了适合自己发展的市场定位并蜕变为Java语言。</p>
+<h3 id="重获新生"><a href="#重获新生" class="headerlink" title="重获新生"></a>重获新生</h3><p>1995年5月23日，Oak语言改名为Java。提出”Write Once,Run Anywhere”的口号。</p>
+<p>1996年1月23日，JDK1.0发布，标志着Java有了第一个正式版本的运行环境。代表技术包括：Java虚拟机、Applet、AWT等。</p>
+<p>1996年4月，十个最主要的操作系统和计算机供应商声明将在其产品中嵌入Java技术，大约8.3万个网页应用了Java技术来制作。1996年5月底，Sun公司在美国旧金山举行了首届JavaOne大会。</p>
+<p>1997年2月19日，Sun公司发布了JDK1.1，代表技术有：JAR文件格式、JDBC、JavaBeans、RMI等。语法得到增强，如内部类和反射类。</p>
+<p>到1999年4月8日，JDK1.1共发布了1.1.0至1.1.8这9个版本。</p>
+<p>1998年12月4日，JDK迎来了一个里程碑式版本：JDK1.2。Sun在这个版本将Java技术拆分为三个方向，分别为面向桌面应用开发的J2SE、面向企业级开发的J2EE和面向手机等移动终端开发的J2ME。代表技术非常多，如EJB、Java Plug-in、Java IDL、Swing等，并内置JIT(Just In Time)即使编译器。</p>
+<p>1999年4月27日，HotSpot虚拟机诞生。刚发布时作为附加程序提供，后来成为JDK1.3之后的默认虚拟机。</p>
+<p>2000年5月8日，JDK1.3发布，主要改进在Java类库上。</p>
+<p>2002年2月13日，JDK1.4发布，标志着Java真正走向成熟。技术特性：正则表达式、异常链、NIO。</p>
+<p>2004年9月30日，JDK5发布，正式改名。技术特性：自动装箱、泛型、动态注解等。</p>
+<p>2006年12月11日，JDK6发布，对虚拟机进行了大量变更。</p>
+<p>在开发JDK7时，Sun公司差点凉凉，被Oracle收购。</p>
+<p>2011年7月28日JDK7准时发布。技术特性：新的G1收集器，加强对非Java语言的支持。</p>
+<p>2014年3月18日，JDK8发布。</p>
+<p>2017年9月21日，JDK9艰难发布，差点分裂。</p>
+<p>2018年3月20日，JDK10发布。</p>
+<p>2018年9月25日，JDK11发布。</p>
+<p>2019年3月20日，JDK12发布。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/11/22/JAVA%E5%8E%86%E5%8F%B2/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-JAVA锁" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="JAVA锁"><a href="#JAVA锁" class="headerlink" title="JAVA锁"></a>JAVA锁</h1><h3 id="最底层"><a href="#最底层" class="headerlink" title="最底层"></a>最底层</h3><p>互斥锁：加锁失败后，线程会释放CPU给其他线程。</p>
+<p>线程会阻塞。对于互斥锁加锁失败而阻塞的现象，是由操作系统内核实现。会有额外的开销成本，是两次线程上下文切换的成本。所以如果你能确定加锁的代码执行时间很短，那就不应该用互斥锁，应该用自旋锁。</p>
+<p>自旋锁：加锁失败后，线程会忙等待，直到它拿到锁。</p>
+<p>不会发生上下文切换，会比互斥锁快一点，开销也小一点。</p>
+<h3 id="读写锁"><a href="#读写锁" class="headerlink" title="读写锁"></a>读写锁</h3><p>读写锁适用于能明确区分读操作和写操作的场景。</p>
+<p>当<strong>写锁</strong>没有被线程持有时，多个线程能够并发的持有读锁。但当<strong>读锁</strong>被线程持有时，读写锁都会被阻塞。所以，写锁是独占锁，因为任何时刻只能有一个线程持有写锁，类似互斥锁和自旋锁，而写锁是共享锁。因此，读写锁的优势是<strong>读多写少</strong>。</p>
+<p>读写锁的分类:</p>
+<ul>
+<li>读优先锁<ul>
+<li>线程A有读锁。线程B要获得写锁，会阻塞。线程C要写锁，获得。B要等待A和C都释放后才会获得写锁。</li>
+</ul>
+</li>
+<li>写优先锁<ul>
+<li>线程A有读锁。线程B要获得写锁，会阻塞。线程C要写锁，阻塞。B要等待A释放后才会获得写锁。</li>
+</ul>
+</li>
+</ul>
+<p>分别都会导致饿死的现象，所以可以采用公平读写锁。</p>
+<h3 id="乐观锁和悲观锁"><a href="#乐观锁和悲观锁" class="headerlink" title="乐观锁和悲观锁"></a>乐观锁和悲观锁</h3><p>互斥锁、自旋锁、读写锁，都是悲观锁。认为多线程同时修改共享资源的概率比较高，于是容易出现冲突，所以访问共享资源前，先要上锁。</p>
+<p>乐观锁:先修改完共享资源，再验证这段时间内有没有发生冲突，如果没有其他线程在修改资源，那么操作完成，如果发现其他线程已经修改过这个资源，则放弃本次操作。全程未加锁，故称为无锁编程。在冲突概率非常低，且加锁成本非常高的场景时，才考虑用乐观锁。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/11/22/JAVA%E9%94%81/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Java内存区域" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Java内存区域和内存溢出异常"><a href="#Java内存区域和内存溢出异常" class="headerlink" title="Java内存区域和内存溢出异常"></a>Java内存区域和内存溢出异常</h1><p>Java和C++之间有一堵由内存动态分配和垃圾收集技术所围成的高墙，墙外的人想进去，墙内的人想出来。</p>
+<h3 id="运行时数据区域"><a href="#运行时数据区域" class="headerlink" title="运行时数据区域"></a>运行时数据区域</h3><p><strong>线程私有：</strong></p>
+<ul>
+<li><p>程序计数器：当前线程所执行字节码的行号指示器。</p>
+</li>
+<li><p>Java虚拟机栈：每个方法被执行的时候，Java虚拟机会同步创建一个栈帧用于存储局部变量表、操作数栈、动态连接、方法出口等信息。</p>
+</li>
+<li><p>本地方法栈：与虚拟机栈帧类似，但本地方法栈是为本地方法服务的。</p>
+</li>
+</ul>
+<p><strong>线程共享</strong></p>
+<p>Java堆：Java堆是虚拟机所管理的内存最大的一块，此内存区域唯一的目的就是存放对象实例。（是垃圾收集器所管理的内存区域，所以也叫GC堆，还好没人叫他垃圾堆）。</p>
+<p>方法区：用于存储已被虚拟机加载的类型信息、常量、静态变量、即时编译器编译后的代码缓存等数据。（别名：非堆）。</p>
+<p>运行时常量池是方法区的一部分，用于存放编译期生成的各种字面量与符号引用，这部分在类加载后存放到方法区的运行时常量池中。</p>
+<h3 id="对象的创建"><a href="#对象的创建" class="headerlink" title="对象的创建"></a>对象的创建</h3><p>当Java虚拟机碰到一条字节码new指令时，先去检查这个指令的参数是否能在常量池中定位到一个类的符号引用，并坚持这个类是否被加载、解析和初始化过。如果没有，先执行类加载过程。</p>
+<p>类加载检查通过后，为新生对象分配内存。对象所需内存大小在类加载完成后便可完全确定。相当于把一块内存从java堆分出来。</p>
+<p>内存分配完成后，虚拟机还要将分配的内存空间都初始化为0值。</p>
+<p>接下来，java虚拟机还要对对象进行必要的设置，例如对象是哪个类的实例、如何才能找到类的元数据类型、对象的哈希码、对象的GC分代年龄等。这些信息存放于对象头当中。</p>
+<p>从Java程序来看，还要执行构造函数。</p>
+<h3 id="对象的内存布局"><a href="#对象的内存布局" class="headerlink" title="对象的内存布局"></a>对象的内存布局</h3><p>对象在内存的布局可以划分为三个部分：对象头(Header)、实例数据(Instance Data)和对象填充(Padding)。</p>
+<p>HotSpot虚拟机对象的对象头部分包括两类信息。第一类用于存储对象自身的运行时数据。第二部分是类型指针。</p>
+<p>示例数据部分是对象真正存储的有效信息，即各种字段内容。</p>
+<p><strong>对象的访问定位</strong></p>
+<p>句柄访问，Java堆中可能会划分出一块内存作为句柄池，优点是稳定。</p>
+<p>直接指针访问</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/11/22/Java%E5%86%85%E5%AD%98%E5%8C%BA%E5%9F%9F/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Java并发编程实战" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Java并发编程实战"><a href="#Java并发编程实战" class="headerlink" title="Java并发编程实战"></a>Java并发编程实战</h1><h3 id="对象的共享"><a href="#对象的共享" class="headerlink" title="对象的共享"></a>对象的共享</h3><h6 id="可见性"><a href="#可见性" class="headerlink" title="可见性"></a>可见性</h6><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">NoVisibility</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">boolean</span> ready;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> number;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">ReaderThread</span> <span class="keyword">extends</span> <span class="title">Thread</span></span>&#123;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span></span>&#123;</span><br><span class="line">            <span class="keyword">while</span>(!ready)</span><br><span class="line">                Thread.yield();</span><br><span class="line">            System.out.println(number);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">new</span> ReaderThread().start();</span><br><span class="line">        number = <span class="number">42</span>;</span><br><span class="line">        ready = <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在上述代码中，Novisibility有可能会一直循环下去，因为读线程有可能会一直看不到ready的值。而另一种现象是，NoVisibility可能会输出0.这就是线程的不可见性。</p>
+<h6 id="失效数据"><a href="#失效数据" class="headerlink" title="失效数据"></a>失效数据</h6><p>当读线程在查看ready变量时，有可能会获得该变量的一个失效值。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MutableInteger</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> value;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">get</span><span class="params">()</span> </span>&#123;<span class="keyword">return</span> value;&#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">set</span><span class="params">(<span class="keyword">int</span> value)</span> </span>&#123; <span class="keyword">this</span>.value = value; &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>上述代码会出现失效值问题，当某个线程调用了set，那么另一个线程可能看到更新后的value值。，也可能看不到。</p>
+<p>得到的失效值至少不是随机的，这种安全性保证被称为最低安全性。</p>
+<h3 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h3><ol>
+<li>加锁</li>
+</ol>
+<p>内置锁可以保证线程以一种可预测的方式查看一个线程的执行情况。所以，可以进一步理解线程之间的同步，就是为了确保某个线程写入该变量的值对于其他线程是可见的。</p>
+<ol start="2">
+<li>Volatile变量</li>
+</ol>
+<p>Java语言提供了一种稍弱的同步机制，及volatile变量，用来确保变量的更新操作通知到其他线程。当该变量声明为volatile类型后，编译器与运行时会注意到这个变量是共享的，因此不会将该变量上的操作与其他内存一起重排序。volatile变量是一种比sychronized关键字更轻量级的同步机制。</p>
+<p>并不建议过度依赖volatile变量提供的可见性。会使锁的代码更脆弱，也更难以理解。</p>
+<p>volatile变量通常用做某个操作完成、发生中断或者状态的标志。</p>
+<h3 id="发布与逸出"><a href="#发布与逸出" class="headerlink" title="发布与逸出"></a>发布与逸出</h3><p>发布(Publish)一个对象的意思是指，使对象能够在当前作用域之外的代码中使用。例如，将一个指向该对象的引用保存到其他代码可以访问的地方，或者在某一个非私有方法中返回该引用。当某个不应该被发布的对象被发布时，这种情况被称之为逸出（Escape）。</p>
+<p>当发布某个对象时，可能会间接地发布其他对象。如果发布了一个列表或集合一类的引用，同时也会发布其中的对象。同样，如果从非私有方法中返回一个引用，那么同样会发布返回的对象。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UnsafeStates</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String[] states = <span class="keyword">new</span> String[]&#123;<span class="string">&quot;AK&quot;</span>,<span class="string">&quot;AL&quot;</span>&#125;;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> String[] getStates() &#123; <span class="keyword">return</span> states; &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        UnsafeStates us = <span class="keyword">new</span> UnsafeStates();</span><br><span class="line">        us.getStates()[<span class="number">1</span>] = <span class="string">&quot;1&quot;</span>;</span><br><span class="line">        System.out.println(Arrays.toString(us.getStates()));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>输出值是：[AK, 1]</p>
+<p>还用一种发布对象或其内部状态的机制就是发布一个内部的类实例。当ThisEscape发布EventListener时，也隐含发布了ThisEscape本身。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">ThisEscape</span><span class="params">(EventSource source)</span></span>&#123;</span><br><span class="line">        source.registerListener(&#123;</span><br><span class="line">            <span class="keyword">new</span> EventListener()&#123;</span><br><span class="line">                <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onEvent</span><span class="params">(Event e)</span></span>&#123;</span><br><span class="line">                    doSomething(e);</span><br><span class="line">                    <span class="keyword">this</span>.getClass();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>当内部的EventListener实例发布时，在外部封装的ThisEscape实例也逸出了。当在构造函数显式或隐式创建一个线程时，this可被新线程看到。</p>
+<h3 id="线程封闭"><a href="#线程封闭" class="headerlink" title="线程封闭"></a>线程封闭</h3><p>如果仅在单线程内访问数据，那么这种技术称为线程。在Swing中大量使用了线程封闭技术。JDBC也包含这个技术。</p>
+<ol>
+<li> Ad-hoc线程封闭</li>
+</ol>
+<p>指的是线程封闭性完全由程序来承担。</p>
+<ol start="2">
+<li><p>栈封闭</p>
+</li>
+<li><p>ThreadLocal类</p>
+<p>这个类使得线程中的某些值与保存值的对象联系起来。</p>
+</li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/11/22/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E5%AE%9E%E6%88%98/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-垃圾收集器与内存分配策略" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="垃圾收集器与内存分配策略"><a href="#垃圾收集器与内存分配策略" class="headerlink" title="垃圾收集器与内存分配策略"></a>垃圾收集器与内存分配策略</h1><h3 id="对象已死？"><a href="#对象已死？" class="headerlink" title="对象已死？"></a>对象已死？</h3><p>引用计数法：在对象中添加一个引用计数器，每当有一个地方引用它时，计数器值加一;当引用失效时，计数器值减一。但当两个对象相互引用时，无法删除。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ReferenceCountingGc objA = <span class="keyword">new</span> ReferenceCountingGc();</span><br><span class="line">ReferenceCountingGc objB = <span class="keyword">new</span> ReferenceCountingGc();</span><br><span class="line">objA.instance = objB;</span><br><span class="line">objB.instance = objA;</span><br></pre></td></tr></table></figure>
+
+<p>无法回收。</p>
+<p>可达性分析：通过一系列成为”GC Roots”的跟对象作为起始节点集，从这些节点开始，根据引用关系向下搜索，如果某个对象到GC Roots间没有任何引用链相连，则这个对象不可能在被使用。</p>
+<h3 id="垃圾收集理论"><a href="#垃圾收集理论" class="headerlink" title="垃圾收集理论"></a>垃圾收集理论</h3><p>当前商业虚拟机的垃圾收集器大多遵循了分代收集，它建立在两个分代假说上:</p>
+<p>1)弱分代假说(Weak Generational Hypothesis):绝大多数对象是朝生夕灭的。</p>
+<p>2）强分代假说（Strong Generational Hypothesis):熬过越多次垃圾收集过程的对象越难以消亡。</p>
+<p>3）跨代引用假说(Intergenerational Reference Hypothsis):跨代引用假说仅占少数。</p>
+<p><strong>标记-清除算法</strong></p>
+<p>首先标记出需要被回收的对象，在标记完成后，统一回收掉被标记的对象。</p>
+<p><strong>标记-复制算法</strong></p>
+<p>将内存划分为大小相等的两块，每次只使用其中一块，然后把使用过的内存一次性清掉。</p>
+<p><strong>标记-整理算法</strong></p>
+<p>让所有存活对象都向所有内存空间一端移动。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/11/22/%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8%E4%B8%8E%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D%E7%AD%96%E7%95%A5/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-排序" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h1><h3 id="插入排序（insertion-sort）"><a href="#插入排序（insertion-sort）" class="headerlink" title="插入排序（insertion sort）"></a>插入排序（insertion sort）</h3><p>在第p趟，我们讲位置p上的元素向左移动，直到它在前p+1个元素的正确位置被找到。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = left, j = i; i &lt; right; j = ++i) &#123;</span><br><span class="line">                    <span class="keyword">int</span> ai = a[i + <span class="number">1</span>];</span><br><span class="line">                    <span class="keyword">while</span> (ai &lt; a[j]) &#123;</span><br><span class="line">                        a[j + <span class="number">1</span>] = a[j];</span><br><span class="line">                        <span class="keyword">if</span> (j-- == left) &#123;</span><br><span class="line">                            <span class="keyword">break</span>;</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                    a[j + <span class="number">1</span>] = ai;</span><br><span class="line">                &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>时间复杂度为O(N²)，在JDK中阈值为47。</p>
+<h3 id="希尔排序（Shellsort）"><a href="#希尔排序（Shellsort）" class="headerlink" title="希尔排序（Shellsort）"></a>希尔排序（Shellsort）</h3><p>冲破二次时间屏障的第一批算法之一。直到若干年后才发现它的亚二次时间界。</p>
+<h3 id="堆排序（heapsort）"><a href="#堆排序（heapsort）" class="headerlink" title="堆排序（heapsort）"></a>堆排序（heapsort）</h3><p>建立N个元素的二叉堆花费O(N)的时间。然后执行N次deleteMin操作，每次O(logN)。总时间O(NlogN)。</p>
+<p>问题在于使用了一个附加数组，但可以避免。</p>
+<p>所比较的平均次数为2NlogN-O（NloglogN）。</p>
+<h3 id="归并排序-mergesort"><a href="#归并排序-mergesort" class="headerlink" title="归并排序(mergesort)"></a>归并排序(mergesort)</h3><p>它是递归算法一个好的实例。基本操作是合并两个已排序的表。(java阈值&gt;286)</p>
+<h3 id="快速排序-quicksort"><a href="#快速排序-quicksort" class="headerlink" title="快速排序(quicksort)"></a>快速排序(quicksort)</h3><p>平均运行时间为O(NlogN)，最坏情形为O(N²),但经过稍许的努力可使这种情况极难出现。</p>
+<p>步骤：</p>
+<ul>
+<li>如果S中元素个数是0或1，则返回。</li>
+<li>取S中任一元素，称之为枢纽元。</li>
+<li>将剩下的元素划分为两个集合。</li>
+<li>返回quicksort(S1)和v，和quicksort(S2)。</li>
+</ul>
+<p><strong>分割策略</strong></p>
+<p>将枢纽元与最后的元素交换,当i，j与枢纽元相等时，停止</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/11/22/%E6%8E%92%E5%BA%8F/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-算法设计与分析" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="算法设计与分析"><a href="#算法设计与分析" class="headerlink" title="算法设计与分析"></a>算法设计与分析</h1><p>过程与算法是解决问题的一种方法的逐步描述。</p>
+<ol>
+<li>由若干条指令组成的又穷序列。</li>
+<li>每条指令的意义是确定的。</li>
+<li>具有零个或多个输入。</li>
+<li>产生若干个输出。</li>
+<li>执行时间是有限的。</li>
+</ol>
+<p>算法的复杂性取决于：</p>
+<ol>
+<li>求解问题的规模</li>
+<li>具体的输入数据</li>
+<li>算法本身的设计</li>
+</ol>
+<p>算法：确定性、有穷性、可行性、0个或多个输入、1个或多个输出。</p>
+<h3 id="递归"><a href="#递归" class="headerlink" title="递归"></a>递归</h3><p>将相对较大规模的对象操作归结为较小规模的对象实施同样的操作。体现在递归元上。</p>
+<p>递归元的变化应能导致算法的终止。</p>
+<p>汉诺塔问题：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Hanoi</span><span class="params">(<span class="keyword">int</span> n,<span class="keyword">int</span> Fr,<span class="keyword">int</span> To,<span class="keyword">int</span> As)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(n&gt;<span class="number">0</span>)&#123;</span><br><span class="line">        Hanoi(n-<span class="number">1</span>,Fro,Ass,To); <span class="comment">//将A上面的n-1个盘移至C</span></span><br><span class="line">        Move(Fro,To);</span><br><span class="line">        Hanoi(n-<span class="number">1</span>,Ass,To,Fro);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>常见的递归形式:</p>
+<ol>
+<li>多变元递归</li>
+<li>多步递归</li>
+<li>嵌套递归</li>
+<li>联立递归（同时定义几个函数，它们彼此相互调用)</li>
+</ol>
+<p>Hilbert图案:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">A</span><span class="params">(i)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(i&gt;<span class="number">0</span>)&#123;</span><br><span class="line">        D(i-<span class="number">1</span>);x=x-h;plotint(x,y);</span><br><span class="line">        A(i-<span class="number">1</span>);y=y-h;ploting(x,y);</span><br><span class="line">        A(i-<span class="number">1</span>);x=x+h;ploting(x,y);</span><br><span class="line">        B(i-<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="动态规划"><a href="#动态规划" class="headerlink" title="动态规划"></a>动态规划</h3><ul>
+<li>基本要素<ul>
+<li>最优子问题</li>
+<li>重叠子问题</li>
+</ul>
+</li>
+</ul>
+<p>一个问题可用动态规划算法或者贪心算法求解的关键特征是问题的(最优子结构性质)。</p>
+<p>按以下几个步骤进行：</p>
+<ol>
+<li>找出最优解的性质，并刻画其结构特征；</li>
+<li>递归地定义最优值；</li>
+<li>以自底向上的方式计算出各子结构的最优值并添入表格保存。</li>
+<li>根据计算最优值得到的信息，构造最优解。</li>
+</ol>
+<p>动态规划一般分为线性动规，区域动规，树形动规，背包动规。</p>
+<h3 id="贪心算法"><a href="#贪心算法" class="headerlink" title="贪心算法"></a>贪心算法</h3><p>所作出的选择只是局部最优的。</p>
+<p>{</p>
+<p>初始化；</p>
+<p>重复执行以下操作；</p>
+<p>选择当前可以选择的最优解；</p>
+<p>将所选择的当前解加入到问题的解；</p>
+<p>直至满足问题求解的结束条件。</p>
+<p>}</p>
+<p>要证明一个整体最优解必定包含了第一个贪心选择。</p>
+<p><strong>Prim算法做法</strong></p>
+<p>保证连通的前提下依次选出权重较小的n-1条边。</p>
+<p><strong>Kruskal算法的做法</strong></p>
+<p>无回路的前提下一次选择权重较小的n-1条边。</p>
+<h3 id="回溯"><a href="#回溯" class="headerlink" title="回溯"></a>回溯</h3><p><strong>n皇后</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">Try(s)&#123;</span><br><span class="line">    j=<span class="number">0</span>;q=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(!q&amp;&amp;j&lt;n)&#123;</span><br><span class="line">        j++;</span><br><span class="line">        <span class="keyword">if</span>(Safe(s,j))&#123;</span><br><span class="line">            Record(s,j);</span><br><span class="line">            <span class="keyword">if</span>(s==n)&#123;q==<span class="number">1</span>;output();&#125;</span><br><span class="line">            <span class="keyword">else</span> Try(s+<span class="number">1</span>);</span><br><span class="line">            <span class="keyword">if</span>(!q) Move-Off(s,j);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> q;</span><br><span class="line">&#125;</span><br><span class="line">Record(s,j)&#123;k=s-j+n-<span class="number">1</span>;</span><br><span class="line">B[s]=j;C[j]=<span class="number">0</span>;D[s+j-<span class="number">1</span>]=<span class="number">0</span>;U[k]=<span class="number">0</span>;&#125;</span><br><span class="line"></span><br><span class="line">Move-Off(s,j)&#123;</span><br><span class="line">    k=s-j+n-<span class="number">1</span>;</span><br><span class="line">    B[s]=<span class="number">0</span>;C[j]=<span class="number">1</span>;D[s+j-<span class="number">1</span>]=<span class="number">1</span>;U[k]=<span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line">Safe(s,j)&#123;</span><br><span class="line">    k=s-j+n-<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">if</span>(c[j]&amp;&amp;U[k]&amp;&amp;D[s+j-<span class="number">1</span>])<span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>TSP问题</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Try(s)&#123;</span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">2</span>;i&lt;=n;i++)</span><br><span class="line">        <span class="keyword">if</span>(C&gt;NC+C[N[s][i]]&amp;&amp;T[i])&#123;</span><br><span class="line">            Record(s,i);</span><br><span class="line">            <span class="keyword">if</span>(s==n)</span><br><span class="line">                <span class="keyword">if</span>(C&gt;NC+C[N[s][l]]) TakeNewPath();</span><br><span class="line">            <span class="keyword">else</span> Try(s+<span class="number">1</span>);</span><br><span class="line">            Move-of(s,i);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h3 id="分支限界法"><a href="#分支限界法" class="headerlink" title="分支限界法"></a>分支限界法</h3><p>分支限界法常以广度优先或以最小耗费（最大效益）优先的方式搜索问题的解空间树。</p>
+<ul>
+<li>常用的两种方法<ul>
+<li>优先队列法(最小耗费优先)</li>
+<li>FIFO(队列式)分支限界法(广度优先)</li>
+</ul>
+</li>
+</ul>
+<h3 id="概率计算"><a href="#概率计算" class="headerlink" title="概率计算"></a>概率计算</h3><p>基本特征是计算具有不确定性。解也不一定是最优解。</p>
+<p>一个问题可以采用随机选择计算的步骤。</p>
+<p>基本特征是计算具有不确定性。</p>
+<p>解不一定是最优解。</p>
+<p>计算</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">Darts</span><span class="params">(<span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">    <span class="keyword">double</span> x,y;</span><br><span class="line">    <span class="keyword">int</span> k=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">static</span> RandomNumber dart;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">        x=dart.fRandom();</span><br><span class="line">        y=dart.fRandom();</span><br><span class="line">        <span class="keyword">if</span>(y&lt;=f(x)) k++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> k/<span class="keyword">double</span>(n);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>模拟洗牌</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Shuffle</span><span class="params">(Type a[],<span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">    <span class="keyword">static</span> RandomNumber md;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;n;i++)&#123;</span><br><span class="line">        <span class="keyword">int</span> j = md.Random(n-i+<span class="number">1</span>)+i;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>模拟退火算法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">k=<span class="number">0</span>;</span><br><span class="line">i=i0;</span><br><span class="line">t=t0;</span><br><span class="line"><span class="keyword">while</span>(不满足停止准则)&#123;</span><br><span class="line">    Gen(Si);</span><br><span class="line">    foreach(j Si)</span><br><span class="line">        <span class="keyword">if</span>(f(i)&lt;f(j)) i=j;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(exp(f(i) - f(j))/t)&gt;random(<span class="number">0</span>,<span class="number">1</span>)) i=j;</span><br><span class="line">    k=k+<span class="number">1</span>;</span><br><span class="line">    t=tk;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>1975年霍兰提出了遗传算法：产生所谓的个体种群，经过复制、交叉和变异产生下一代种群。（交叉、变异、度量、选择）</p>
+<p>(1)下列算法不是随机算法思想的是：（A）</p>
+<ul>
+<li><p>A.</p>
+<p>普里姆算法</p>
+</li>
+<li><p>B.</p>
+<p>舍伍德算法</p>
+</li>
+<li><p>C.</p>
+<p>蒙特卡洛算法</p>
+</li>
+<li><p>D.</p>
+<p>拉斯维加斯算法</p>
+</li>
+</ul>
+<p>(2)模拟退火算法来源于固体退火原理。</p>
+<p>(3)人工神经网络算法是一种模拟人类大脑神经网络结构的算法。</p>
+<h3 id="NP完全问题"><a href="#NP完全问题" class="headerlink" title="NP完全问题"></a>NP完全问题</h3><p>(1)k带图灵机的空间复杂性S(n)是指（A）</p>
+<ul>
+<li><p>A.</p>
+<p>k带图灵机处理所有长度为n的输入时，在k条带上所使用过的方格数的总和。</p>
+</li>
+</ul>
+<p>(2)下面关于NP问题说法正确的是  P类问题包含在NP类问题中</p>
+<p>(3)所有非确定性多项式时间内可解的判定问题构成NP类问题 对</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/11/22/%E7%AE%97%E6%B3%95%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%88%86%E6%9E%90/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-一道题" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -309,91 +980,10 @@
 
 
   
-    <article id="post-逆转裁判123合集" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/10/21/%E9%80%86%E8%BD%AC%E8%A3%81%E5%88%A4123%E5%90%88%E9%9B%86/">逆转裁判123合集</a>
-    </h1>
-  
-
-        
-        <a href="/2020/10/21/%E9%80%86%E8%BD%AC%E8%A3%81%E5%88%A4123%E5%90%88%E9%9B%86/" class="archive-article-date">
-  	<time datetime="2020-10-21T16:05:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-21</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="逆转裁判"><a href="#逆转裁判" class="headerlink" title="逆转裁判"></a>逆转裁判</h1><p><img src="/2020/10/21/%E9%80%86%E8%BD%AC%E8%A3%81%E5%88%A4123%E5%90%88%E9%9B%86/pwaa1.jpg"></p>
-<p>  从一开始就没想到逆转裁判会是卡普空做的，卡普空竟然会做这种SLG，这也多亏了有巧舟这样的王牌编剧，可以将卡普空的优势放大，并且将这个系列发扬光大。当然，<strong>逆转裁判的法庭与现实生活中的法庭完全不符，所以不要学。</strong></p>
-<h3 id="逆转1"><a href="#逆转1" class="headerlink" title="逆转1"></a>逆转1</h3><p>第一代是拉我入坑的一代，也奠定了逆转裁判的主基调，那就是：</p>
-<p><strong>繁杂的取证、证明过程</strong>、<strong>富有个性的人物</strong>、<strong>扑朔迷离的现场</strong></p>
-<p>先说第一个，我竟然还有证明证人是否是看错了现场，我<img src="/2020/10/21/%E9%80%86%E8%BD%AC%E8%A3%81%E5%88%A4123%E5%90%88%E9%9B%86/emotion1.jpg">你自己看了啥你不知道吗，还要我给你证明。</p>
-<p>第二个就是人物，逆转的人物都贼有个性，都能给人留下深刻印象比如糸锯刑警<img src="/2020/10/21/%E9%80%86%E8%BD%AC%E8%A3%81%E5%88%A4123%E5%90%88%E9%9B%86/pwaa2.PNG">大婶<img src="/2020/10/21/%E9%80%86%E8%BD%AC%E8%A3%81%E5%88%A4123%E5%90%88%E9%9B%86/pwaa3.PNG">等等，在紧张的审批过程中带来了不少的欢乐。</p>
-<p>最后就是现场了，最后一关真是太乱了，现场，竟然牵扯到了一整个公园，我还要自己去取证，我到底是律师啊还是柯南啊。shift！</p>
-<p>总之，逆转1的剧情挺好的，据说DL-6事件还会接着。</p>
-<h3 id="逆转2"><a href="#逆转2" class="headerlink" title="逆转2"></a>逆转2</h3><p>先说逆转裁判2带来的两个最大的改变：第一就是犯人在关卡中就会明确的告诉你，第二就是讨论了男主为什么要做律师。</p>
-<p>第一个很明显：在第三关和第四关从中间就告诉我们了。同时，故事中的犯人也并不是明确的坏人了，他们有些也是受害者。其中第三个故事的犯人最后真的让人心疼。<img src="/2020/10/21/%E9%80%86%E8%BD%AC%E8%A3%81%E5%88%A4123%E5%90%88%E9%9B%86/pwaa4.PNG">最后认罪时让我的心里震了一下。</p>
-<p>最后一关更是扣人心弦，听说还有坏结局，不过我是看着攻略玩的，没打出来。</p>
-<h3 id="逆转3"><a href="#逆转3" class="headerlink" title="逆转3"></a>逆转3</h3><p>还没玩，再说。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Game</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/10/21/%E9%80%86%E8%BD%AC%E8%A3%81%E5%88%A4123%E5%90%88%E9%9B%86/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
+    <nav id="page-nav">
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
+    </nav>
   
 
 

@@ -6,15 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>Archives: 2020 | Coder&amp;&amp;Gamer</title>
+  <title>Coder&amp;&amp;Gamer</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="湘潭大学18级软件工程1班">
-<meta property="og:type" content="website">
+  <meta name="description" content="Java内存区域和内存溢出异常Java和C++之间有一堵由内存动态分配和垃圾收集技术所围成的高墙，墙外的人想进去，墙内的人想出来。 运行时数据区域线程私有：  程序计数器：当前线程所执行字节码的行号指示器。  Java虚拟机栈：每个方法被执行的时候，Java虚拟机会同步创建一个栈帧用于存储局部变量表、操作数栈、动态连接、方法出口等信息。  本地方法栈：与虚拟机栈帧类似，但本地方法栈是为本地方法服务">
+<meta property="og:type" content="article">
 <meta property="og:title" content="Coder&amp;&amp;Gamer">
-<meta property="og:url" content="http://example.com/archives/2020/index.html">
+<meta property="og:url" content="http://example.com/2020/11/22/Java%E5%86%85%E5%AD%98%E5%8C%BA%E5%9F%9F/index.html">
 <meta property="og:site_name" content="Coder&amp;&amp;Gamer">
-<meta property="og:description" content="湘潭大学18级软件工程1班">
+<meta property="og:description" content="Java内存区域和内存溢出异常Java和C++之间有一堵由内存动态分配和垃圾收集技术所围成的高墙，墙外的人想进去，墙内的人想出来。 运行时数据区域线程私有：  程序计数器：当前线程所执行字节码的行号指示器。  Java虚拟机栈：每个方法被执行的时候，Java虚拟机会同步创建一个栈帧用于存储局部变量表、操作数栈、动态连接、方法出口等信息。  本地方法栈：与虚拟机栈帧类似，但本地方法栈是为本地方法服务">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-11-22T07:01:06.846Z">
+<meta property="article:modified_time" content="2020-11-22T07:01:06.846Z">
 <meta property="article:author" content="JingBo Guan">
 <meta property="article:tag" content="编程,代码,开源">
 <meta name="twitter:card" content="summary">
@@ -153,275 +155,152 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-Java内存区域" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Java内存区域和内存溢出异常"><a href="#Java内存区域和内存溢出异常" class="headerlink" title="Java内存区域和内存溢出异常"></a>Java内存区域和内存溢出异常</h1><p>Java和C++之间有一堵由内存动态分配和垃圾收集技术所围成的高墙，墙外的人想进去，墙内的人想出来。</p>
+<h3 id="运行时数据区域"><a href="#运行时数据区域" class="headerlink" title="运行时数据区域"></a>运行时数据区域</h3><p><strong>线程私有：</strong></p>
+<ul>
+<li><p>程序计数器：当前线程所执行字节码的行号指示器。</p>
+</li>
+<li><p>Java虚拟机栈：每个方法被执行的时候，Java虚拟机会同步创建一个栈帧用于存储局部变量表、操作数栈、动态连接、方法出口等信息。</p>
+</li>
+<li><p>本地方法栈：与虚拟机栈帧类似，但本地方法栈是为本地方法服务的。</p>
+</li>
+</ul>
+<p><strong>线程共享</strong></p>
+<p>Java堆：Java堆是虚拟机所管理的内存最大的一块，此内存区域唯一的目的就是存放对象实例。（是垃圾收集器所管理的内存区域，所以也叫GC堆，还好没人叫他垃圾堆）。</p>
+<p>方法区：用于存储已被虚拟机加载的类型信息、常量、静态变量、即时编译器编译后的代码缓存等数据。（别名：非堆）。</p>
+<p>运行时常量池是方法区的一部分，用于存放编译期生成的各种字面量与符号引用，这部分在类加载后存放到方法区的运行时常量池中。</p>
+<h3 id="对象的创建"><a href="#对象的创建" class="headerlink" title="对象的创建"></a>对象的创建</h3><p>当Java虚拟机碰到一条字节码new指令时，先去检查这个指令的参数是否能在常量池中定位到一个类的符号引用，并坚持这个类是否被加载、解析和初始化过。如果没有，先执行类加载过程。</p>
+<p>类加载检查通过后，为新生对象分配内存。对象所需内存大小在类加载完成后便可完全确定。相当于把一块内存从java堆分出来。</p>
+<p>内存分配完成后，虚拟机还要将分配的内存空间都初始化为0值。</p>
+<p>接下来，java虚拟机还要对对象进行必要的设置，例如对象是哪个类的实例、如何才能找到类的元数据类型、对象的哈希码、对象的GC分代年龄等。这些信息存放于对象头当中。</p>
+<p>从Java程序来看，还要执行构造函数。</p>
+<h3 id="对象的内存布局"><a href="#对象的内存布局" class="headerlink" title="对象的内存布局"></a>对象的内存布局</h3><p>对象在内存的布局可以划分为三个部分：对象头(Header)、实例数据(Instance Data)和对象填充(Padding)。</p>
+<p>HotSpot虚拟机对象的对象头部分包括两类信息。第一类用于存储对象自身的运行时数据。第二部分是类型指针。</p>
+<p>示例数据部分是对象真正存储的有效信息，即各种字段内容。</p>
+<p><strong>对象的访问定位</strong></p>
+<p>句柄访问，Java堆中可能会划分出一块内存作为句柄池，优点是稳定。</p>
+<p>直接指针访问</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/11/22/%E6%A0%91/" class="archive-article-date">
-  	<time datetime="2020-11-22T14:57:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-22</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/11/22/%E6%A0%91/">树</a>
-    </h1>
-  
+      
 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2020/11/22/Java%E5%86%85%E5%AD%98%E5%8C%BA%E5%9F%9F/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/11/22/JAVA%E5%8E%86%E5%8F%B2/" class="archive-article-date">
-  	<time datetime="2020-11-22T07:01:06.846Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-22</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/11/22/JAVA%E9%94%81/" class="archive-article-date">
-  	<time datetime="2020-11-22T07:01:06.846Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-22</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
+<nav id="article-nav">
+  
+    <a href="/2020/11/22/JAVA%E9%94%81/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/11/22/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E5%AE%9E%E6%88%98/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title"></div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/11/22/Java%E5%86%85%E5%AD%98%E5%8C%BA%E5%9F%9F/" class="archive-article-date">
-  	<time datetime="2020-11-22T07:01:06.846Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-22</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/11/22/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E5%AE%9E%E6%88%98/" class="archive-article-date">
-  	<time datetime="2020-11-22T07:01:06.846Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-22</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
+        
+        
+    </div>
+</aside>
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/11/22/%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8%E4%B8%8E%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D%E7%AD%96%E7%95%A5/" class="archive-article-date">
-  	<time datetime="2020-11-22T07:01:06.846Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-22</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/11/22/%E6%8E%92%E5%BA%8F/" class="archive-article-date">
-  	<time datetime="2020-11-22T07:01:06.846Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-22</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/11/22/%E7%AE%97%E6%B3%95%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%88%86%E6%9E%90/" class="archive-article-date">
-  	<time datetime="2020-11-22T07:01:06.846Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-22</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/11/21/%E4%B8%80%E9%81%93%E9%A2%98/" class="archive-article-date">
-  	<time datetime="2020-11-21T17:29:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-21</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/11/21/%E4%B8%80%E9%81%93%E9%A2%98/">一道题</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/11/19/%E6%AF%81%E7%81%AD%E6%88%98%E5%A3%AB%E6%B0%B8%E6%81%92/" class="archive-article-date">
-  	<time datetime="2020-11-19T19:25:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-19</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/11/19/%E6%AF%81%E7%81%AD%E6%88%98%E5%A3%AB%E6%B0%B8%E6%81%92/">毁灭战士永恒——看似纯粹，实则复杂</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Game</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/archives/2020/page/2/">2</a><a class="extend next" rel="next" href="/archives/2020/page/2/">Next &amp;raquo;</a>
-    </nav>
   
 
 
@@ -445,8 +324,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
