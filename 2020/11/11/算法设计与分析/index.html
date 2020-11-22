@@ -6,19 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>Coder&amp;&amp;Gamer</title>
+  <title>算法设计与分析 | Coder&amp;&amp;Gamer</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="JAVA锁最底层互斥锁：加锁失败后，线程会释放CPU给其他线程。 线程会阻塞。对于互斥锁加锁失败而阻塞的现象，是由操作系统内核实现。会有额外的开销成本，是两次线程上下文切换的成本。所以如果你能确定加锁的代码执行时间很短，那就不应该用互斥锁，应该用自旋锁。 自旋锁：加锁失败后，线程会忙等待，直到它拿到锁。 不会发生上下文切换，会比互斥锁快一点，开销也小一点。 读写锁读写锁适用于能明确区分读操作和写操">
+  <meta name="description" content="算法设计与分析过程与算法是解决问题的一种方法的逐步描述。  由若干条指令组成的又穷序列。 每条指令的意义是确定的。 具有零个或多个输入。 产生若干个输出。 执行时间是有限的。  算法的复杂性取决于：  求解问题的规模 具体的输入数据 算法本身的设计  算法：确定性、有穷性、可行性、0个或多个输入、1个或多个输出。 递归将相对较大规模的对象操作归结为较小规模的对象实施同样的操作。体现在递归元上。 递">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Coder&amp;&amp;Gamer">
-<meta property="og:url" content="http://example.com/2020/11/22/JAVA%E9%94%81/index.html">
+<meta property="og:title" content="算法设计与分析">
+<meta property="og:url" content="http://example.com/2020/11/11/%E7%AE%97%E6%B3%95%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%88%86%E6%9E%90/index.html">
 <meta property="og:site_name" content="Coder&amp;&amp;Gamer">
-<meta property="og:description" content="JAVA锁最底层互斥锁：加锁失败后，线程会释放CPU给其他线程。 线程会阻塞。对于互斥锁加锁失败而阻塞的现象，是由操作系统内核实现。会有额外的开销成本，是两次线程上下文切换的成本。所以如果你能确定加锁的代码执行时间很短，那就不应该用互斥锁，应该用自旋锁。 自旋锁：加锁失败后，线程会忙等待，直到它拿到锁。 不会发生上下文切换，会比互斥锁快一点，开销也小一点。 读写锁读写锁适用于能明确区分读操作和写操">
+<meta property="og:description" content="算法设计与分析过程与算法是解决问题的一种方法的逐步描述。  由若干条指令组成的又穷序列。 每条指令的意义是确定的。 具有零个或多个输入。 产生若干个输出。 执行时间是有限的。  算法的复杂性取决于：  求解问题的规模 具体的输入数据 算法本身的设计  算法：确定性、有穷性、可行性、0个或多个输入、1个或多个输出。 递归将相对较大规模的对象操作归结为较小规模的对象实施同样的操作。体现在递归元上。 递">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-11-22T07:01:06.846Z">
-<meta property="article:modified_time" content="2020-11-22T07:01:06.846Z">
+<meta property="article:published_time" content="2020-11-11T14:57:25.000Z">
+<meta property="article:modified_time" content="2020-11-22T07:10:47.718Z">
 <meta property="article:author" content="JingBo Guan">
-<meta property="article:tag" content="编程,代码,开源">
+<meta property="article:tag" content="Code">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="Coder&amp;&amp;Gamer" type="application/atom+xml">
@@ -155,31 +155,146 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-JAVA锁" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-算法设计与分析" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      算法设计与分析
+    </h1>
+  
+
+        
+        <a href="/2020/11/11/%E7%AE%97%E6%B3%95%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%88%86%E6%9E%90/" class="archive-article-date">
+  	<time datetime="2020-11-11T14:57:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-11</time>
+</a>
+        
+      </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="JAVA锁"><a href="#JAVA锁" class="headerlink" title="JAVA锁"></a>JAVA锁</h1><h3 id="最底层"><a href="#最底层" class="headerlink" title="最底层"></a>最底层</h3><p>互斥锁：加锁失败后，线程会释放CPU给其他线程。</p>
-<p>线程会阻塞。对于互斥锁加锁失败而阻塞的现象，是由操作系统内核实现。会有额外的开销成本，是两次线程上下文切换的成本。所以如果你能确定加锁的代码执行时间很短，那就不应该用互斥锁，应该用自旋锁。</p>
-<p>自旋锁：加锁失败后，线程会忙等待，直到它拿到锁。</p>
-<p>不会发生上下文切换，会比互斥锁快一点，开销也小一点。</p>
-<h3 id="读写锁"><a href="#读写锁" class="headerlink" title="读写锁"></a>读写锁</h3><p>读写锁适用于能明确区分读操作和写操作的场景。</p>
-<p>当<strong>写锁</strong>没有被线程持有时，多个线程能够并发的持有读锁。但当<strong>读锁</strong>被线程持有时，读写锁都会被阻塞。所以，写锁是独占锁，因为任何时刻只能有一个线程持有写锁，类似互斥锁和自旋锁，而写锁是共享锁。因此，读写锁的优势是<strong>读多写少</strong>。</p>
-<p>读写锁的分类:</p>
+        <h1 id="算法设计与分析"><a href="#算法设计与分析" class="headerlink" title="算法设计与分析"></a>算法设计与分析</h1><p>过程与算法是解决问题的一种方法的逐步描述。</p>
+<ol>
+<li>由若干条指令组成的又穷序列。</li>
+<li>每条指令的意义是确定的。</li>
+<li>具有零个或多个输入。</li>
+<li>产生若干个输出。</li>
+<li>执行时间是有限的。</li>
+</ol>
+<p>算法的复杂性取决于：</p>
+<ol>
+<li>求解问题的规模</li>
+<li>具体的输入数据</li>
+<li>算法本身的设计</li>
+</ol>
+<p>算法：确定性、有穷性、可行性、0个或多个输入、1个或多个输出。</p>
+<h3 id="递归"><a href="#递归" class="headerlink" title="递归"></a>递归</h3><p>将相对较大规模的对象操作归结为较小规模的对象实施同样的操作。体现在递归元上。</p>
+<p>递归元的变化应能导致算法的终止。</p>
+<p>汉诺塔问题：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Hanoi</span><span class="params">(<span class="keyword">int</span> n,<span class="keyword">int</span> Fr,<span class="keyword">int</span> To,<span class="keyword">int</span> As)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(n&gt;<span class="number">0</span>)&#123;</span><br><span class="line">        Hanoi(n-<span class="number">1</span>,Fro,Ass,To); <span class="comment">//将A上面的n-1个盘移至C</span></span><br><span class="line">        Move(Fro,To);</span><br><span class="line">        Hanoi(n-<span class="number">1</span>,Ass,To,Fro);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>常见的递归形式:</p>
+<ol>
+<li>多变元递归</li>
+<li>多步递归</li>
+<li>嵌套递归</li>
+<li>联立递归（同时定义几个函数，它们彼此相互调用)</li>
+</ol>
+<p>Hilbert图案:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">A</span><span class="params">(i)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(i&gt;<span class="number">0</span>)&#123;</span><br><span class="line">        D(i-<span class="number">1</span>);x=x-h;plotint(x,y);</span><br><span class="line">        A(i-<span class="number">1</span>);y=y-h;ploting(x,y);</span><br><span class="line">        A(i-<span class="number">1</span>);x=x+h;ploting(x,y);</span><br><span class="line">        B(i-<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="动态规划"><a href="#动态规划" class="headerlink" title="动态规划"></a>动态规划</h3><ul>
+<li>基本要素<ul>
+<li>最优子问题</li>
+<li>重叠子问题</li>
+</ul>
+</li>
+</ul>
+<p>一个问题可用动态规划算法或者贪心算法求解的关键特征是问题的(最优子结构性质)。</p>
+<p>按以下几个步骤进行：</p>
+<ol>
+<li>找出最优解的性质，并刻画其结构特征；</li>
+<li>递归地定义最优值；</li>
+<li>以自底向上的方式计算出各子结构的最优值并添入表格保存。</li>
+<li>根据计算最优值得到的信息，构造最优解。</li>
+</ol>
+<p>动态规划一般分为线性动规，区域动规，树形动规，背包动规。</p>
+<h3 id="贪心算法"><a href="#贪心算法" class="headerlink" title="贪心算法"></a>贪心算法</h3><p>所作出的选择只是局部最优的。</p>
+<p>{</p>
+<p>初始化；</p>
+<p>重复执行以下操作；</p>
+<p>选择当前可以选择的最优解；</p>
+<p>将所选择的当前解加入到问题的解；</p>
+<p>直至满足问题求解的结束条件。</p>
+<p>}</p>
+<p>要证明一个整体最优解必定包含了第一个贪心选择。</p>
+<p><strong>Prim算法做法</strong></p>
+<p>保证连通的前提下依次选出权重较小的n-1条边。</p>
+<p><strong>Kruskal算法的做法</strong></p>
+<p>无回路的前提下一次选择权重较小的n-1条边。</p>
+<h3 id="回溯"><a href="#回溯" class="headerlink" title="回溯"></a>回溯</h3><p><strong>n皇后</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">Try(s)&#123;</span><br><span class="line">    j=<span class="number">0</span>;q=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(!q&amp;&amp;j&lt;n)&#123;</span><br><span class="line">        j++;</span><br><span class="line">        <span class="keyword">if</span>(Safe(s,j))&#123;</span><br><span class="line">            Record(s,j);</span><br><span class="line">            <span class="keyword">if</span>(s==n)&#123;q==<span class="number">1</span>;output();&#125;</span><br><span class="line">            <span class="keyword">else</span> Try(s+<span class="number">1</span>);</span><br><span class="line">            <span class="keyword">if</span>(!q) Move-Off(s,j);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> q;</span><br><span class="line">&#125;</span><br><span class="line">Record(s,j)&#123;k=s-j+n-<span class="number">1</span>;</span><br><span class="line">B[s]=j;C[j]=<span class="number">0</span>;D[s+j-<span class="number">1</span>]=<span class="number">0</span>;U[k]=<span class="number">0</span>;&#125;</span><br><span class="line"></span><br><span class="line">Move-Off(s,j)&#123;</span><br><span class="line">    k=s-j+n-<span class="number">1</span>;</span><br><span class="line">    B[s]=<span class="number">0</span>;C[j]=<span class="number">1</span>;D[s+j-<span class="number">1</span>]=<span class="number">1</span>;U[k]=<span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line">Safe(s,j)&#123;</span><br><span class="line">    k=s-j+n-<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">if</span>(c[j]&amp;&amp;U[k]&amp;&amp;D[s+j-<span class="number">1</span>])<span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>TSP问题</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Try(s)&#123;</span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">2</span>;i&lt;=n;i++)</span><br><span class="line">        <span class="keyword">if</span>(C&gt;NC+C[N[s][i]]&amp;&amp;T[i])&#123;</span><br><span class="line">            Record(s,i);</span><br><span class="line">            <span class="keyword">if</span>(s==n)</span><br><span class="line">                <span class="keyword">if</span>(C&gt;NC+C[N[s][l]]) TakeNewPath();</span><br><span class="line">            <span class="keyword">else</span> Try(s+<span class="number">1</span>);</span><br><span class="line">            Move-of(s,i);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h3 id="分支限界法"><a href="#分支限界法" class="headerlink" title="分支限界法"></a>分支限界法</h3><p>分支限界法常以广度优先或以最小耗费（最大效益）优先的方式搜索问题的解空间树。</p>
 <ul>
-<li>读优先锁<ul>
-<li>线程A有读锁。线程B要获得写锁，会阻塞。线程C要写锁，获得。B要等待A和C都释放后才会获得写锁。</li>
-</ul>
-</li>
-<li>写优先锁<ul>
-<li>线程A有读锁。线程B要获得写锁，会阻塞。线程C要写锁，阻塞。B要等待A释放后才会获得写锁。</li>
+<li>常用的两种方法<ul>
+<li>优先队列法(最小耗费优先)</li>
+<li>FIFO(队列式)分支限界法(广度优先)</li>
 </ul>
 </li>
 </ul>
-<p>分别都会导致饿死的现象，所以可以采用公平读写锁。</p>
-<h3 id="乐观锁和悲观锁"><a href="#乐观锁和悲观锁" class="headerlink" title="乐观锁和悲观锁"></a>乐观锁和悲观锁</h3><p>互斥锁、自旋锁、读写锁，都是悲观锁。认为多线程同时修改共享资源的概率比较高，于是容易出现冲突，所以访问共享资源前，先要上锁。</p>
-<p>乐观锁:先修改完共享资源，再验证这段时间内有没有发生冲突，如果没有其他线程在修改资源，那么操作完成，如果发现其他线程已经修改过这个资源，则放弃本次操作。全程未加锁，故称为无锁编程。在冲突概率非常低，且加锁成本非常高的场景时，才考虑用乐观锁。</p>
+<h3 id="概率计算"><a href="#概率计算" class="headerlink" title="概率计算"></a>概率计算</h3><p>基本特征是计算具有不确定性。解也不一定是最优解。</p>
+<p>一个问题可以采用随机选择计算的步骤。</p>
+<p>基本特征是计算具有不确定性。</p>
+<p>解不一定是最优解。</p>
+<p>计算</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">Darts</span><span class="params">(<span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">    <span class="keyword">double</span> x,y;</span><br><span class="line">    <span class="keyword">int</span> k=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">static</span> RandomNumber dart;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">        x=dart.fRandom();</span><br><span class="line">        y=dart.fRandom();</span><br><span class="line">        <span class="keyword">if</span>(y&lt;=f(x)) k++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> k/<span class="keyword">double</span>(n);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>模拟洗牌</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Shuffle</span><span class="params">(Type a[],<span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">    <span class="keyword">static</span> RandomNumber md;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;n;i++)&#123;</span><br><span class="line">        <span class="keyword">int</span> j = md.Random(n-i+<span class="number">1</span>)+i;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>模拟退火算法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">k=<span class="number">0</span>;</span><br><span class="line">i=i0;</span><br><span class="line">t=t0;</span><br><span class="line"><span class="keyword">while</span>(不满足停止准则)&#123;</span><br><span class="line">    Gen(Si);</span><br><span class="line">    foreach(j Si)</span><br><span class="line">        <span class="keyword">if</span>(f(i)&lt;f(j)) i=j;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(exp(f(i) - f(j))/t)&gt;random(<span class="number">0</span>,<span class="number">1</span>)) i=j;</span><br><span class="line">    k=k+<span class="number">1</span>;</span><br><span class="line">    t=tk;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>1975年霍兰提出了遗传算法：产生所谓的个体种群，经过复制、交叉和变异产生下一代种群。（交叉、变异、度量、选择）</p>
+<p>(1)下列算法不是随机算法思想的是：（A）</p>
+<ul>
+<li><p>A.</p>
+<p>普里姆算法</p>
+</li>
+<li><p>B.</p>
+<p>舍伍德算法</p>
+</li>
+<li><p>C.</p>
+<p>蒙特卡洛算法</p>
+</li>
+<li><p>D.</p>
+<p>拉斯维加斯算法</p>
+</li>
+</ul>
+<p>(2)模拟退火算法来源于固体退火原理。</p>
+<p>(3)人工神经网络算法是一种模拟人类大脑神经网络结构的算法。</p>
+<h3 id="NP完全问题"><a href="#NP完全问题" class="headerlink" title="NP完全问题"></a>NP完全问题</h3><p>(1)k带图灵机的空间复杂性S(n)是指（A）</p>
+<ul>
+<li><p>A.</p>
+<p>k带图灵机处理所有长度为n的输入时，在k条带上所使用过的方格数的总和。</p>
+</li>
+</ul>
+<p>(2)下面关于NP问题说法正确的是  P类问题包含在NP类问题中</p>
+<p>(3)所有非确定性多项式时间内可解的判定问题构成NP类问题 对</p>
 
       
 
@@ -188,6 +303,17 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Code</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -238,7 +364,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2020/11/22/JAVA%E9%94%81/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2020/11/11/%E7%AE%97%E6%B3%95%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%88%86%E6%9E%90/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -252,18 +378,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2020/11/22/JAVA%E5%8E%86%E5%8F%B2/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2020/11/13/%E4%B8%80%E9%81%93%E9%A2%98/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          (no title)
+          一道题
         
       </div>
     </a>
   
   
-    <a href="/2020/11/22/Java%E5%86%85%E5%AD%98%E5%8C%BA%E5%9F%9F/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title"></div>
+    <a href="/2020/11/10/%E6%8E%92%E5%BA%8F/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">排序</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -390,6 +516,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Code</a>
               </li>
              
               <li class="article-tag-list-item">

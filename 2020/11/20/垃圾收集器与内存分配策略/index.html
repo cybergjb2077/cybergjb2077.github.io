@@ -6,19 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>Coder&amp;&amp;Gamer</title>
+  <title>垃圾收集器与内存分配策略 | Coder&amp;&amp;Gamer</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="JAVA发展史从Java的第一个版本诞生到现在已有二十余年的时间。 初出茅庐1991年4月，由James Gosling博士领导开发的Oak语言就是Java语言的前身，当时Oak语言并不算成功，之后迅速找到了适合自己发展的市场定位并蜕变为Java语言。 重获新生1995年5月23日，Oak语言改名为Java。提出”Write Once,Run Anywhere”的口号。 1996年1月23日，JD">
+  <meta name="description" content="垃圾收集器与内存分配策略对象已死？引用计数法：在对象中添加一个引用计数器，每当有一个地方引用它时，计数器值加一;当引用失效时，计数器值减一。但当两个对象相互引用时，无法删除。 1234ReferenceCountingGc objA &#x3D; new ReferenceCountingGc();ReferenceCountingGc objB &#x3D; new ReferenceCountingGc();ob">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Coder&amp;&amp;Gamer">
-<meta property="og:url" content="http://example.com/2020/11/22/JAVA%E5%8E%86%E5%8F%B2/index.html">
+<meta property="og:title" content="垃圾收集器与内存分配策略">
+<meta property="og:url" content="http://example.com/2020/11/20/%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8%E4%B8%8E%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D%E7%AD%96%E7%95%A5/index.html">
 <meta property="og:site_name" content="Coder&amp;&amp;Gamer">
-<meta property="og:description" content="JAVA发展史从Java的第一个版本诞生到现在已有二十余年的时间。 初出茅庐1991年4月，由James Gosling博士领导开发的Oak语言就是Java语言的前身，当时Oak语言并不算成功，之后迅速找到了适合自己发展的市场定位并蜕变为Java语言。 重获新生1995年5月23日，Oak语言改名为Java。提出”Write Once,Run Anywhere”的口号。 1996年1月23日，JD">
+<meta property="og:description" content="垃圾收集器与内存分配策略对象已死？引用计数法：在对象中添加一个引用计数器，每当有一个地方引用它时，计数器值加一;当引用失效时，计数器值减一。但当两个对象相互引用时，无法删除。 1234ReferenceCountingGc objA &#x3D; new ReferenceCountingGc();ReferenceCountingGc objB &#x3D; new ReferenceCountingGc();ob">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-11-22T07:01:06.846Z">
-<meta property="article:modified_time" content="2020-11-22T07:01:06.846Z">
+<meta property="article:published_time" content="2020-11-20T14:57:25.000Z">
+<meta property="article:modified_time" content="2020-11-22T07:10:47.718Z">
 <meta property="article:author" content="JingBo Guan">
-<meta property="article:tag" content="编程,代码,开源">
+<meta property="article:tag" content="Code">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="Coder&amp;&amp;Gamer" type="application/atom+xml">
@@ -155,31 +155,41 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-JAVA历史" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-垃圾收集器与内存分配策略" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      垃圾收集器与内存分配策略
+    </h1>
+  
+
+        
+        <a href="/2020/11/20/%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8%E4%B8%8E%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D%E7%AD%96%E7%95%A5/" class="archive-article-date">
+  	<time datetime="2020-11-20T14:57:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-20</time>
+</a>
+        
+      </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="JAVA发展史"><a href="#JAVA发展史" class="headerlink" title="JAVA发展史"></a>JAVA发展史</h1><p>从Java的第一个版本诞生到现在已有二十余年的时间。</p>
-<h3 id="初出茅庐"><a href="#初出茅庐" class="headerlink" title="初出茅庐"></a>初出茅庐</h3><p>1991年4月，由James Gosling博士领导开发的Oak语言就是Java语言的前身，当时Oak语言并不算成功，之后迅速找到了适合自己发展的市场定位并蜕变为Java语言。</p>
-<h3 id="重获新生"><a href="#重获新生" class="headerlink" title="重获新生"></a>重获新生</h3><p>1995年5月23日，Oak语言改名为Java。提出”Write Once,Run Anywhere”的口号。</p>
-<p>1996年1月23日，JDK1.0发布，标志着Java有了第一个正式版本的运行环境。代表技术包括：Java虚拟机、Applet、AWT等。</p>
-<p>1996年4月，十个最主要的操作系统和计算机供应商声明将在其产品中嵌入Java技术，大约8.3万个网页应用了Java技术来制作。1996年5月底，Sun公司在美国旧金山举行了首届JavaOne大会。</p>
-<p>1997年2月19日，Sun公司发布了JDK1.1，代表技术有：JAR文件格式、JDBC、JavaBeans、RMI等。语法得到增强，如内部类和反射类。</p>
-<p>到1999年4月8日，JDK1.1共发布了1.1.0至1.1.8这9个版本。</p>
-<p>1998年12月4日，JDK迎来了一个里程碑式版本：JDK1.2。Sun在这个版本将Java技术拆分为三个方向，分别为面向桌面应用开发的J2SE、面向企业级开发的J2EE和面向手机等移动终端开发的J2ME。代表技术非常多，如EJB、Java Plug-in、Java IDL、Swing等，并内置JIT(Just In Time)即使编译器。</p>
-<p>1999年4月27日，HotSpot虚拟机诞生。刚发布时作为附加程序提供，后来成为JDK1.3之后的默认虚拟机。</p>
-<p>2000年5月8日，JDK1.3发布，主要改进在Java类库上。</p>
-<p>2002年2月13日，JDK1.4发布，标志着Java真正走向成熟。技术特性：正则表达式、异常链、NIO。</p>
-<p>2004年9月30日，JDK5发布，正式改名。技术特性：自动装箱、泛型、动态注解等。</p>
-<p>2006年12月11日，JDK6发布，对虚拟机进行了大量变更。</p>
-<p>在开发JDK7时，Sun公司差点凉凉，被Oracle收购。</p>
-<p>2011年7月28日JDK7准时发布。技术特性：新的G1收集器，加强对非Java语言的支持。</p>
-<p>2014年3月18日，JDK8发布。</p>
-<p>2017年9月21日，JDK9艰难发布，差点分裂。</p>
-<p>2018年3月20日，JDK10发布。</p>
-<p>2018年9月25日，JDK11发布。</p>
-<p>2019年3月20日，JDK12发布。</p>
+        <h1 id="垃圾收集器与内存分配策略"><a href="#垃圾收集器与内存分配策略" class="headerlink" title="垃圾收集器与内存分配策略"></a>垃圾收集器与内存分配策略</h1><h3 id="对象已死？"><a href="#对象已死？" class="headerlink" title="对象已死？"></a>对象已死？</h3><p>引用计数法：在对象中添加一个引用计数器，每当有一个地方引用它时，计数器值加一;当引用失效时，计数器值减一。但当两个对象相互引用时，无法删除。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ReferenceCountingGc objA = <span class="keyword">new</span> ReferenceCountingGc();</span><br><span class="line">ReferenceCountingGc objB = <span class="keyword">new</span> ReferenceCountingGc();</span><br><span class="line">objA.instance = objB;</span><br><span class="line">objB.instance = objA;</span><br></pre></td></tr></table></figure>
+
+<p>无法回收。</p>
+<p>可达性分析：通过一系列成为”GC Roots”的跟对象作为起始节点集，从这些节点开始，根据引用关系向下搜索，如果某个对象到GC Roots间没有任何引用链相连，则这个对象不可能在被使用。</p>
+<h3 id="垃圾收集理论"><a href="#垃圾收集理论" class="headerlink" title="垃圾收集理论"></a>垃圾收集理论</h3><p>当前商业虚拟机的垃圾收集器大多遵循了分代收集，它建立在两个分代假说上:</p>
+<p>1)弱分代假说(Weak Generational Hypothesis):绝大多数对象是朝生夕灭的。</p>
+<p>2）强分代假说（Strong Generational Hypothesis):熬过越多次垃圾收集过程的对象越难以消亡。</p>
+<p>3）跨代引用假说(Intergenerational Reference Hypothsis):跨代引用假说仅占少数。</p>
+<p><strong>标记-清除算法</strong></p>
+<p>首先标记出需要被回收的对象，在标记完成后，统一回收掉被标记的对象。</p>
+<p><strong>标记-复制算法</strong></p>
+<p>将内存划分为大小相等的两块，每次只使用其中一块，然后把使用过的内存一次性清掉。</p>
+<p><strong>标记-整理算法</strong></p>
+<p>让所有存活对象都向所有内存空间一端移动。</p>
 
       
 
@@ -188,6 +198,17 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Code</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -238,7 +259,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2020/11/22/JAVA%E5%8E%86%E5%8F%B2/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2020/11/20/%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8%E4%B8%8E%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D%E7%AD%96%E7%95%A5/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -262,8 +283,8 @@
     </a>
   
   
-    <a href="/2020/11/22/JAVA%E9%94%81/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title"></div>
+    <a href="/2020/11/19/%E6%AF%81%E7%81%AD%E6%88%98%E5%A3%AB%E6%B0%B8%E6%81%92/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">毁灭战士永恒——看似纯粹，实则复杂</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -390,6 +411,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Code</a>
               </li>
              
               <li class="article-tag-list-item">

@@ -6,19 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>一道题 | Coder&amp;&amp;Gamer</title>
+  <title>Java锁 | Coder&amp;&amp;Gamer</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="湘潭大学18级软件工程1班">
+  <meta name="description" content="JAVA锁最底层互斥锁：加锁失败后，线程会释放CPU给其他线程。 线程会阻塞。对于互斥锁加锁失败而阻塞的现象，是由操作系统内核实现。会有额外的开销成本，是两次线程上下文切换的成本。所以如果你能确定加锁的代码执行时间很短，那就不应该用互斥锁，应该用自旋锁。 自旋锁：加锁失败后，线程会忙等待，直到它拿到锁。 不会发生上下文切换，会比互斥锁快一点，开销也小一点。 读写锁读写锁适用于能明确区分读操作和写操">
 <meta property="og:type" content="article">
-<meta property="og:title" content="一道题">
-<meta property="og:url" content="http://example.com/2020/11/21/%E4%B8%80%E9%81%93%E9%A2%98/index.html">
+<meta property="og:title" content="Java锁">
+<meta property="og:url" content="http://example.com/2020/11/18/JAVA%E9%94%81/index.html">
 <meta property="og:site_name" content="Coder&amp;&amp;Gamer">
-<meta property="og:description" content="湘潭大学18级软件工程1班">
+<meta property="og:description" content="JAVA锁最底层互斥锁：加锁失败后，线程会释放CPU给其他线程。 线程会阻塞。对于互斥锁加锁失败而阻塞的现象，是由操作系统内核实现。会有额外的开销成本，是两次线程上下文切换的成本。所以如果你能确定加锁的代码执行时间很短，那就不应该用互斥锁，应该用自旋锁。 自旋锁：加锁失败后，线程会忙等待，直到它拿到锁。 不会发生上下文切换，会比互斥锁快一点，开销也小一点。 读写锁读写锁适用于能明确区分读操作和写操">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-11-21T17:29:48.000Z">
-<meta property="article:modified_time" content="2020-11-22T07:01:06.846Z">
+<meta property="article:published_time" content="2020-11-18T14:57:25.000Z">
+<meta property="article:modified_time" content="2020-11-22T07:10:47.718Z">
 <meta property="article:author" content="JingBo Guan">
-<meta property="article:tag" content="随笔">
+<meta property="article:tag" content="Code">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="Coder&amp;&amp;Gamer" type="application/atom+xml">
@@ -155,27 +155,47 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-一道题" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-JAVA锁" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      一道题
+      Java锁
     </h1>
   
 
         
-        <a href="/2020/11/21/%E4%B8%80%E9%81%93%E9%A2%98/" class="archive-article-date">
-  	<time datetime="2020-11-21T17:29:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-21</time>
+        <a href="/2020/11/18/JAVA%E9%94%81/" class="archive-article-date">
+  	<time datetime="2020-11-18T14:57:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-18</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <h1 id="JAVA锁"><a href="#JAVA锁" class="headerlink" title="JAVA锁"></a>JAVA锁</h1><h3 id="最底层"><a href="#最底层" class="headerlink" title="最底层"></a>最底层</h3><p>互斥锁：加锁失败后，线程会释放CPU给其他线程。</p>
+<p>线程会阻塞。对于互斥锁加锁失败而阻塞的现象，是由操作系统内核实现。会有额外的开销成本，是两次线程上下文切换的成本。所以如果你能确定加锁的代码执行时间很短，那就不应该用互斥锁，应该用自旋锁。</p>
+<p>自旋锁：加锁失败后，线程会忙等待，直到它拿到锁。</p>
+<p>不会发生上下文切换，会比互斥锁快一点，开销也小一点。</p>
+<h3 id="读写锁"><a href="#读写锁" class="headerlink" title="读写锁"></a>读写锁</h3><p>读写锁适用于能明确区分读操作和写操作的场景。</p>
+<p>当<strong>写锁</strong>没有被线程持有时，多个线程能够并发的持有读锁。但当<strong>读锁</strong>被线程持有时，读写锁都会被阻塞。所以，写锁是独占锁，因为任何时刻只能有一个线程持有写锁，类似互斥锁和自旋锁，而写锁是共享锁。因此，读写锁的优势是<strong>读多写少</strong>。</p>
+<p>读写锁的分类:</p>
+<ul>
+<li>读优先锁<ul>
+<li>线程A有读锁。线程B要获得写锁，会阻塞。线程C要写锁，获得。B要等待A和C都释放后才会获得写锁。</li>
+</ul>
+</li>
+<li>写优先锁<ul>
+<li>线程A有读锁。线程B要获得写锁，会阻塞。线程C要写锁，阻塞。B要等待A释放后才会获得写锁。</li>
+</ul>
+</li>
+</ul>
+<p>分别都会导致饿死的现象，所以可以采用公平读写锁。</p>
+<h3 id="乐观锁和悲观锁"><a href="#乐观锁和悲观锁" class="headerlink" title="乐观锁和悲观锁"></a>乐观锁和悲观锁</h3><p>互斥锁、自旋锁、读写锁，都是悲观锁。认为多线程同时修改共享资源的概率比较高，于是容易出现冲突，所以访问共享资源前，先要上锁。</p>
+<p>乐观锁:先修改完共享资源，再验证这段时间内有没有发生冲突，如果没有其他线程在修改资源，那么操作完成，如果发现其他线程已经修改过这个资源，则放弃本次操作。全程未加锁，故称为无锁编程。在冲突概率非常低，且加锁成本非常高的场景时，才考虑用乐观锁。</p>
+
       
 
       
@@ -188,7 +208,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Code</a>
         		</li>
       		
 		</ul>
@@ -244,7 +264,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2020/11/21/%E4%B8%80%E9%81%93%E9%A2%98/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2020/11/18/JAVA%E9%94%81/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -258,18 +278,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2020/11/22/%E7%AE%97%E6%B3%95%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%88%86%E6%9E%90/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2020/11/19/%E6%AF%81%E7%81%AD%E6%88%98%E5%A3%AB%E6%B0%B8%E6%81%92/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          (no title)
+          毁灭战士永恒——看似纯粹，实则复杂
         
       </div>
     </a>
   
   
-    <a href="/2020/11/19/%E6%AF%81%E7%81%AD%E6%88%98%E5%A3%AB%E6%B0%B8%E6%81%92/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">毁灭战士永恒——看似纯粹，实则复杂</div>
+    <a href="/2020/11/17/JAVA%E5%8E%86%E5%8F%B2/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Java发展历史</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -396,6 +416,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Code</a>
               </li>
              
               <li class="article-tag-list-item">
