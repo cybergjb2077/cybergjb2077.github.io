@@ -2,6 +2,7 @@
 title: 传统ACT的没落是必然
 date: 2018-11-19 19:25:27
 tags: Game
+comments: true
 ---
 
 # 传统ACT的没落是必然
